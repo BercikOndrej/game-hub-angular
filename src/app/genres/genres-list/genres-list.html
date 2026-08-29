@@ -1,0 +1,11 @@
+<ul class="w-full">
+  @for (genre of genres(); track genre.id) {
+    <li>
+      <app-genre-card
+        [genre]="genre"
+        [isSelected]="genre.id === selectedGenreId()"
+        (onSelect)="select(genre.id)"
+      />
+    </li>
+  }
+</ul>
