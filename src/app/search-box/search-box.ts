@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { MatInput, MatHint } from '@angular/material/input';
+import { MatHint } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   imports: [FormsModule, MatIcon, MatHint],
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.html',
+  selector: 'app-search-box',
+  templateUrl: './search-box.html',
 })
-export class SearchBar {
+export class SearchBox {
   protected value = signal('');
 
   protected searchGames(): void {
