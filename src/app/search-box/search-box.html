@@ -1,8 +1,9 @@
 <div
-  class="bg-gray-200 rounded-xl hover:bg-gray-300 transform duration-300 flex items-center gap-2 focus-within:border focus-within:border-black"
+  class="bg-gray-200 rounded-xl hover:bg-gray-300 transform duration-300 flex items-center justify-between gap-2 px-4 focus-within:border focus-within:border-black"
 >
-  <mat-icon class="ml-4">search</mat-icon>
+  <mat-icon>search</mat-icon>
   <input
+    #searchInput
     class="w-full p-2 border-0 focus:border-0 focus:outline-none"
     [(ngModel)]="value"
     (keyup.enter)="searchGames()"
@@ -10,5 +11,8 @@
     maxlength="256"
     placeholder="Search..."
   />
-  <mat-hint class="w-24 text-gray-500" align="end">{{ value().length }}/256</mat-hint>
+  <mat-hint class="text-gray-500" align="end">{{ value().length }}/256</mat-hint>
+  @if (searchInput.value.length > 0) {
+    <mat-icon (click)="clearAndFocusInput()">close</mat-icon>
+  }
 </div>
