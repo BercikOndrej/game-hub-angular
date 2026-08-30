@@ -1,8 +1,0 @@
-<div
-  class="w-full rounded-r-md hover:bg-gray-400 hover:text-2xl transform duration-300 flex gap-2 p-4"
-  [class.bg-gray-400]="isSelected()"
-  (click)="onSelect.emit(genre().id)"
->
-  <img class="rounded-md w-8 h-8" [src]="genre().image_background" alt="Genre image" />
-  <p class="text-xl text-bold">{{ genre().name }}</p>
-</div>

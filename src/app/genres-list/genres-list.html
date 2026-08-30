@@ -1,0 +1,16 @@
+<ul class="w-full">
+  @for (genre of genres(); track genre.id) {
+    <li>
+      <app-card
+        [isClickable]="true"
+        [isSelected]="selectedGenreId() === genre.id"
+        (cardClick)="select(genre.id)"
+      >
+        <div class="body flex gap-2 p-4">
+          <img class="rounded-md w-8 h-8" [src]="genre.image_background" alt="Genre image" />
+          <p class="text-xl text-bold">{{ genre.name }}</p>
+        </div>
+      </app-card>
+    </li>
+  }
+</ul>

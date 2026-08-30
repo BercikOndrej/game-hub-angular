@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { NavBar } from './nav-bar/nav-bar';
-import { GenresList } from './genres/genres-list/genres-list';
+import { GenresList } from './genres-list/genres-list';
 
 @Component({
   imports: [NavBar, GenresList],

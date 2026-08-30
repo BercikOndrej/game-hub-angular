@@ -1,12 +1,12 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { ApiService } from '../../services/http-service';
+import { ApiService } from '../services/http-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GenreCard } from '../genre-card/genre-card';
+import { Card } from '../shared/card/card';
 
 @Component({
   selector: 'app-genres-list',
   templateUrl: './genres-list.html',
-  imports: [GenreCard],
+  imports: [Card],
 })
 export class GenresList {
   private apiService = inject(ApiService);
