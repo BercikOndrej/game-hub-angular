@@ -1,0 +1,18 @@
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, inject } from '@angular/core';
+import { Button } from '../button/button';
+
+export interface ConfirmDialogData {
+  title: string;
+  message: string;
+}
+
+@Component({
+  imports: [Button],
+  selector: 'app-confirm-dialog',
+  templateUrl: './confirm-dialog.html',
+})
+export class ConfirmDialog {
+  readonly dialogRef = inject(DialogRef<boolean>);
+  readonly data = inject<ConfirmDialogData>(DIALOG_DATA);
+}

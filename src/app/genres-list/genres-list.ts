@@ -10,6 +10,8 @@ import {
 import { ApiService } from '../services/http-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Card } from '../shared/card/card';
+import { ConfirmDialog, ConfirmDialogData } from '../shared/confirm-dialog/confirm-dialog';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-genres-list',
@@ -18,6 +20,7 @@ import { Card } from '../shared/card/card';
 })
 export class GenresList {
   private apiService = inject(ApiService);
+  private confirmDialog = inject(Dialog);
 
   protected cards = viewChildren(Card, { read: ElementRef });
   loadedGenres = toSignal(this.apiService.getAllGenres(), {
@@ -39,12 +42,22 @@ export class GenresList {
     });
   }
 
-  protected select(id: number) {
+  protected confirmSelect(id: number): void {
     const founded = this.genres().find((genre) => genre.id === id);
     if (!founded) {
       console.error(`Genre with id ${id} not found.`);
       return;
     }
-    this.selectedGenreId.set(founded.id);
+    const ref = this.confirmDialog.open<boolean, ConfirmDialogData>(ConfirmDialog, {
+      data: {
+        title: 'Vybrat herní kategorii?',
+        message: 'Potvrzením se změní zobrazené hry',
+      },
+    });
+    ref.closed.subscribe((confirmed) => {
+      if (confirmed) {
+        this.selectedGenreId.set(id);
+      }
+    });
   }
 }
