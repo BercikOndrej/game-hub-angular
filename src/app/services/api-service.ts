@@ -10,7 +10,7 @@ export class ApiService {
   private GamesUrl = 'https://api.rawg.io/api/games';
   private client = inject(HttpClient);
 
-  public getAllGames(): Observable<Game[]> {
+  public loadGames(): Observable<Game[]> {
     return this.client
       .get<ApiResponse<Game>>(this.GamesUrl, {})
       .pipe(map((response) => response.results));
@@ -20,7 +20,7 @@ export class ApiService {
     return this.client.get<Game>(this.GamesUrl, {});
   }
 
-  public getAllGenres(): Observable<Genre[]> {
+  public loadGenres(): Observable<Genre[]> {
     return this.client
       .get<ApiResponse<Genre>>(this.GenresUrl, {})
       .pipe(map((response) => response.results));

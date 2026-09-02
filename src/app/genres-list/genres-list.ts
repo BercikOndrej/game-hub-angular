@@ -7,11 +7,10 @@ import {
   signal,
   viewChildren,
 } from '@angular/core';
-import { ApiService } from '../services/http-service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Card } from '../shared/card/card';
 import { ConfirmDialog, ConfirmDialogData } from '../shared/confirm-dialog/confirm-dialog';
 import { Dialog } from '@angular/cdk/dialog';
+import { GameHubSignalStore } from '../stores/game-hub-signal-store';
 
 @Component({
   selector: 'app-genres-list',
@@ -19,15 +18,12 @@ import { Dialog } from '@angular/cdk/dialog';
   imports: [Card],
 })
 export class GenresList {
-  private apiService = inject(ApiService);
   private confirmDialog = inject(Dialog);
+  private store = inject(GameHubSignalStore);
 
   protected cards = viewChildren(Card, { read: ElementRef });
-  loadedGenres = toSignal(this.apiService.getAllGenres(), {
-    initialValue: [],
-  });
 
-  protected genres = linkedSignal(() => this.loadedGenres());
+  protected genres = linkedSignal(() => this.store.getGenres());
   protected selectedGenreId = signal<number | undefined>(undefined);
 
   constructor() {
