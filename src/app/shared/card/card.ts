@@ -1,9 +1,16 @@
-import { Component, input, output } from '@angular/core';
+import { Component, Host, input, output } from '@angular/core';
 
 @Component({
   imports: [],
   selector: 'app-card',
   templateUrl: './card.html',
+  host: {
+    class: 'group h-full rounded-2xl space-y-2 transform duration-300 overflow-hidden block',
+    '[class.hover:cursor-pointer]': 'isClickable()',
+    '[class.hover:bg-gray-400]': 'isClickable()',
+    '[class.bg-gray-400]': 'isSelected()',
+    '(click)': 'handleClick()',
+  },
 })
 export class Card {
   public hasHeader = input(false);

@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ApiResponse } from '../types/ApiResponse';
 import { Game, Genre } from '../types/Games';
+import { GameDto, GenreDto } from '../types/Dtos';
+import * as MapHelpers from '../types/map-helpers';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -12,21 +14,25 @@ export class ApiService {
 
   public loadGames(): Observable<Game[]> {
     return this.client
-      .get<ApiResponse<Game>>(this.GamesUrl, {})
-      .pipe(map((response) => response.results));
+      .get<ApiResponse<GameDto>>(this.GamesUrl, {})
+      .pipe(map((response) => response.results.map((dto: GameDto) => MapHelpers.dtoToGame(dto))));
   }
 
   public getGame(): Observable<Game> {
-    return this.client.get<Game>(this.GamesUrl, {});
+    return this.client
+      .get<GameDto>(this.GamesUrl, {})
+      .pipe(map((dto: GameDto) => MapHelpers.dtoToGame(dto)));
   }
 
   public loadGenres(): Observable<Genre[]> {
     return this.client
-      .get<ApiResponse<Genre>>(this.GenresUrl, {})
-      .pipe(map((response) => response.results));
+      .get<ApiResponse<GenreDto>>(this.GenresUrl, {})
+      .pipe(map((response) => response.results.map((dto: GenreDto) => MapHelpers.dtoToGenre(dto))));
   }
 
   public getGennre(): Observable<Genre> {
-    return this.client.get<Genre>(this.GenresUrl, {});
+    return this.client
+      .get<GenreDto>(this.GenresUrl, {})
+      .pipe(map((dto: GenreDto) => MapHelpers.dtoToGenre(dto)));
   }
 }

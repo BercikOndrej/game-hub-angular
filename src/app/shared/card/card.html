@@ -1,15 +1,7 @@
-<div
-  class="group rounded-2xl space-y-2 transform duration-300"
-  [class.hover:cursor-pointer]="isClickable()"
-  [class.hover:hover:bg-gray-400]="isClickable()"
-  [class.bg-gray-400]="isSelected()"
-  (click)="handleClick()"
->
-  @if (hasHeader()) {
-    <ng-content select=".header"></ng-content>
-  }
-  <ng-content select=".body"></ng-content>
-  @if (hasFooter()) {
-    <ng-content select=".footer"></ng-content>
-  }
-</div>
+@if (hasHeader()) {
+  <ng-content select=".header"></ng-content>
+}
+<ng-content select=".body"></ng-content>
+@if (hasFooter()) {
+  <ng-content select=".footer"></ng-content>
+}

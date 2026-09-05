@@ -2,9 +2,10 @@ import { Component, effect, inject, signal } from '@angular/core';
 import { NavBar } from './nav-bar/nav-bar';
 import { GenresList } from './genres-list/genres-list';
 import { GameHubSignalStore } from './stores/game-hub-signal-store';
+import { GameList } from './game-list/game-list';
 
 @Component({
-  imports: [NavBar, GenresList],
+  imports: [GameList, GenresList, NavBar],
   selector: 'app-root',
   templateUrl: './app.html',
 })

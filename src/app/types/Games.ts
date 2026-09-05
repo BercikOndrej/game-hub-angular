@@ -3,7 +3,7 @@ export interface Genre {
   name: string;
   slug: string;
   gamesCount: number;
-  image_background: string;
+  backgroundImage: string;
   description?: string;
 }
 
