@@ -6,6 +6,9 @@ import { Card } from '../shared/card/card';
   imports: [Card],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
+  host: {
+    class: 'grid grid-cols-3 items-center justify-between gap-4 p-4',
+  },
 })
 export class GameList {
   private store = inject(GameHubSignalStore);

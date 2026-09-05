@@ -1,15 +1,13 @@
-<div class="grid grid-cols-3 items-center justify-between gap-4 p-4">
-  @for (game of games(); track game.id) {
-    <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true">
-      <div class="header">
-        <img [src]="game.backgroundImage" alt="Game image" class="w-full h-48 object-cover" />
-      </div>
-      <div class="body my-8 mx-4 flex items-baseline justify-between gap-4">
-        <span class="text-xl font-bold">
-          {{ game.name }}
-        </span>
-        <p>{{ game.rating }}</p>
-      </div>
-    </app-card>
-  }
-</div>
+@for (game of games(); track game.id) {
+  <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true">
+    <div class="header">
+      <img [src]="game.backgroundImage" alt="Game image" class="w-full h-48 object-cover" />
+    </div>
+    <div class="body my-8 mx-4 flex items-baseline justify-between gap-4">
+      <span class="text-xl font-bold">
+        {{ game.name }}
+      </span>
+      <p>{{ game.rating }}</p>
+    </div>
+  </app-card>
+}
