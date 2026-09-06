@@ -2,6 +2,7 @@ import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { GameHubSignalStore } from '../stores/game-hub-signal-store';
 import { Card } from '../shared/card/card';
 import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
+import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
 
 @Component({
   imports: [Card],
@@ -12,8 +13,13 @@ import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
   },
 })
 export class GameList {
+  // Signal store
   // private store = inject(GameHubSignalStore);
-  protected store = inject(HttpResourcesGameHubStore);
-
   // protected games = linkedSignal(() => this.store.getGames());
+
+  // Http resource store
+  // protected store = inject(HttpResourcesGameHubStore);
+
+  // Rx resource store
+  protected store = inject(RxResourceGameHubStore);
 }

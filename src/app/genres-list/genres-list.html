@@ -1,9 +1,9 @@
 <ul class="w-full">
-  @if (this.httpResourceStore.areGenresLoading()) {
+  @if (this.store.areGenresLoading()) {
     <p>Genres are loading</p>
   }
-  @if (this.httpResourceStore.genresError()) {
-    <p>Error occures? {{ this.httpResourceStore.genresError()?.message }}</p>
+  @if (this.store.genresError()) {
+    <p>Error occures? {{ this.store.genresError()?.message }}</p>
   }
   @for (genre of this.genres(); track genre.id) {
     <li>

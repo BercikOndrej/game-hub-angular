@@ -1,3 +1,9 @@
+@if (this.store.areGamesLoading()) {
+  <p>Games are loading...</p>
+}
+@if (this.store.gamesError()) {
+  <p class="text-red-500">Error occures: {{ this.store.gamesError()?.message }}</p>
+}
 @for (game of this.store.games(); track game.id) {
   <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true">
     <div class="header">
