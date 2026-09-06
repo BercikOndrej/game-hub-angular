@@ -11,6 +11,7 @@ import { Card } from '../shared/card/card';
 import { ConfirmDialog, ConfirmDialogData } from '../shared/confirm-dialog/confirm-dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { GameHubSignalStore } from '../stores/game-hub-signal-store';
+import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
 
 @Component({
   selector: 'app-genres-list',
@@ -19,11 +20,13 @@ import { GameHubSignalStore } from '../stores/game-hub-signal-store';
 })
 export class GenresList {
   private confirmDialog = inject(Dialog);
-  private store = inject(GameHubSignalStore);
+  // private store = inject(GameHubSignalStore);
+  protected httpResourceStore = inject(HttpResourcesGameHubStore);
 
   protected cards = viewChildren(Card, { read: ElementRef });
 
-  protected genres = linkedSignal(() => this.store.getGenres());
+  // protected genres = linkedSignal(() => this.store.getGenres());
+  protected genres = linkedSignal(() => this.httpResourceStore.genres() ?? []);
   protected selectedGenreId = signal<number | undefined>(undefined);
 
   constructor() {

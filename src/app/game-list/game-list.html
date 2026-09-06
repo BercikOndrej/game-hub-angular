@@ -1,4 +1,4 @@
-@for (game of games(); track game.id) {
+@for (game of this.store.games(); track game.id) {
   <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true">
     <div class="header">
       <img [src]="game.backgroundImage" alt="Game image" class="w-full h-48 object-cover" />
