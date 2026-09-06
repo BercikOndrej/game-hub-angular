@@ -1,5 +1,10 @@
 import { Platform } from './Games';
 
+export interface GamePlatformDto {
+  platform: Platform;
+  released_at: string | null;
+}
+
 export interface GameDto {
   id: number;
   slug: string;
@@ -7,7 +12,7 @@ export interface GameDto {
   released: string;
   background_image: string;
   rating: number;
-  platforms: Platform[];
+  platforms: GamePlatformDto[];
 }
 
 export interface GenreDto {

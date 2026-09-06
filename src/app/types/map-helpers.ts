@@ -12,4 +12,5 @@ export const dtoToGame = (dto: GameDto): Game =>
   ({
     ...dto,
     backgroundImage: dto.background_image,
+    platforms: dto.platforms.map(({ platform }) => platform),
   }) satisfies Game;

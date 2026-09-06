@@ -1,0 +1,9 @@
+@if (starRating() === undefined) {
+  <p class="text-red-500">Invalid input value for rating!</p>
+} @else {
+  @for (star of starRating(); track $index) {
+    <mat-icon class="text-yellow-400">
+      {{ star }}
+    </mat-icon>
+  }
+}

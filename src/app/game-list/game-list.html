@@ -5,7 +5,7 @@
   <p class="text-red-500">Error occures: {{ this.store.gamesError()?.message }}</p>
 }
 @for (game of this.store.games(); track game.id) {
-  <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true">
+  <app-card class="bg-gray-200" [isClickable]="true" [hasHeader]="true" [hasFooter]="true">
     <div class="header">
       <img [src]="game.backgroundImage" alt="Game image" class="w-full h-48 object-cover" />
     </div>
@@ -13,7 +13,12 @@
       <span class="text-xl font-bold">
         {{ game.name }}
       </span>
-      <p>{{ game.rating }}</p>
+      <app-rating-stars [rating]="game.rating" />
+    </div>
+    <div class="footer w- p-4 flex items-center justify-end gap-1 mt-auto">
+      @for (icon of normalizePlatformIcons(game.platforms); track $index) {
+        <ng-icon size="20" [name]="icon"></ng-icon>
+      }
     </div>
   </app-card>
 }
