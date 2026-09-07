@@ -16,8 +16,8 @@
       <app-rating-stars [rating]="game.rating" />
     </div>
     <div class="footer w- p-4 flex items-center justify-end gap-1 mt-auto">
-      @for (icon of normalizePlatformIcons(game.platforms); track $index) {
-        <ng-icon size="20" [name]="icon"></ng-icon>
+      @for (pair of normalizePlatformIcons(game.platforms) | keyvalue; track pair.key) {
+        <ng-icon [appTooltip]="pair.key" size="20" [name]="pair.value"></ng-icon>
       }
     </div>
   </app-card>

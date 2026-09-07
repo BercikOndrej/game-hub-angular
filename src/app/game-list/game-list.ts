@@ -1,4 +1,5 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
+import { KeyValuePipe } from '@angular/common';
 import { GameHubSignalStore } from '../stores/game-hub-signal-store';
 import { Card } from '../shared/card/card';
 import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
@@ -16,20 +17,21 @@ import {
 } from '@ng-icons/simple-icons';
 import { faBrandXbox } from '@ng-icons/font-awesome/brands';
 import { faSolidGamepad } from '@ng-icons/font-awesome/solid';
+import { Tooltip } from '../directives/tooltip';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
-  pc: 'simpleSteam',
-  ps: 'simplePlaystation',
-  xbox: 'faBrandXbox',
-  mac: 'simpleApple',
-  linux: 'simpleLinux',
-  android: 'simpleAndroid',
-  web: 'simpleGooglechrome',
-  nintendo: 'faSolidGamepad',
+  Pc: 'simpleSteam',
+  Plastation: 'simplePlaystation',
+  Xbox: 'faBrandXbox',
+  MacOs: 'simpleApple',
+  Linux: 'simpleLinux',
+  Android: 'simpleAndroid',
+  Web: 'simpleGooglechrome',
+  Nintendo: 'faSolidGamepad',
 };
 
 @Component({
-  imports: [Card, RatingStars, NgIcon],
+  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
   providers: [
@@ -59,38 +61,42 @@ export class GameList {
   // Rx resource store
   protected store = inject(RxResourceGameHubStore);
 
-  protected normalizePlatformIcons(platforms: readonly Platform[]): string[] {
-    const normalized = platforms
+  protected normalizePlatformIcons(platforms: readonly Platform[]): Record<string, string> {
+    return platforms
       .map((platform) => {
         if (platform.slug.includes('playstation')) {
-          return 'ps';
+          return 'Playstation';
         }
         if (platform.slug.includes('windows')) {
-          return 'pc';
+          return 'Pc';
         }
         if (platform.slug.includes('macos')) {
-          return 'mac';
+          return 'MacOs';
         }
         if (platform.slug.includes('nintendo')) {
-          return 'nintendo';
+          return 'Nintendo';
         }
         if (platform.slug.includes('xbox')) {
-          return 'xbox';
+          return 'Xbox';
         }
         if (platform.slug.includes('android')) {
-          return 'android';
+          return 'Android';
         }
         if (platform.slug.includes('web')) {
-          return 'web';
+          return 'Web';
         }
         if (platform.slug.includes('linux')) {
-          return 'linux';
+          return 'Linux';
         }
         return '';
       })
-      .filter((p) => p.trim() !== '' || !Object.keys(PLATFORM_ICON_MAP).includes(p))
-      .map((p) => PLATFORM_ICON_MAP[p])
-      .filter((p) => p !== undefined);
-    return [...new Set(normalized)];
+      .filter((key) => key in PLATFORM_ICON_MAP)
+      .reduce<Record<string, string>>((icons, key) => {
+        const icon = PLATFORM_ICON_MAP[key];
+        if (icon) {
+          icons[key] = icon;
+        }
+        return icons;
+      }, {});
   }
 }
