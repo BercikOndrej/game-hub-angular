@@ -4,12 +4,10 @@ import { Component, Host, input, output } from '@angular/core';
   imports: [],
   selector: 'app-card',
   templateUrl: './card.html',
+  styleUrl: './card.css',
   host: {
-    class:
-      'group h-full flex flex-col rounded-2xl space-y-2 transform duration-300 overflow-hidden',
-    '[class.hover:cursor-pointer]': 'isClickable()',
-    '[class.hover:bg-gray-400]': 'isClickable()',
-    '[class.bg-gray-400]': 'isSelected()',
+    '[class.clickable]': 'isClickable()',
+    '[class.selected]': 'isSelected()',
     '(click)': 'handleClick()',
   },
 })

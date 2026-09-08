@@ -11,9 +11,7 @@ export interface ConfirmDialogData {
   imports: [Button],
   selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.html',
-  host: {
-    class: 'block rounded-xl p-4 space-y-4 bg-white',
-  },
+  styleUrl: './confirm-dialog.css',
 })
 export class ConfirmDialog {
   readonly dialogRef = inject(DialogRef<boolean>);

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border-radius: 1em;
+  background-color: white;
+  padding: 2em;
+}

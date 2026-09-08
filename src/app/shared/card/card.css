@@ -1,0 +1,19 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  gap: 1em;
+  overflow: hidden;
+  transition-duration: 500ms;
+  transition-property: transform, background-color;
+}
+
+:host(.clickable):hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+:host(.selected) {
+  background-color: lightgrey;
+}

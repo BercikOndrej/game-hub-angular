@@ -7,6 +7,7 @@ type StarState = 'star' | 'star_half' | 'star_border';
   imports: [MatIcon],
   selector: 'app-rating-stars',
   templateUrl: './rating-stars.html',
+  styleUrl: './rating-stars.css',
   host: { class: 'flex p-2 items-center justify-center' },
 })
 export class RatingStars {

@@ -1,0 +1,15 @@
+.container {
+  padding: 0.5em;
+  background-color: lightgrey;
+  border-radius: 0.5em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.container:hover {
+  background-color: gray;
+  transition-duration: 500ms;
+  transform: scale(1.1);
+  transition-property: transform, background-color;
+}
