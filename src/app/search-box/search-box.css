@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  background-color: whitesmoke;
+  border-radius: 1em;
+}
+
+:host:hover {
+  background-color: lightgray;
+  transition-duration: 500ms;
+  transition-property: transform, background-color;
+}
+
+:host:focus-within {
+  border: 1px solid black;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+  border: none;
+}
+
+.search-hint {
+  color: gray;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}

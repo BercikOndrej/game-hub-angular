@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding: 0 2em 2em 0;
+}
+
+.error-text {
+  color: red;
+}
+
+.game-card {
+  background-color: whitesmoke;
+  box-shadow: 6px -6px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header__image {
+  width: 100%;
+  height: 12em;
+  object-fit: cover;
+}
+
+.card__body {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0.5em 2em;
+}
+
+.body__text {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.card__footer {
+  width: 100%;
+  display: flex;
+  gap: 0.25em;
+  justify-content: flex-end;
+  padding: 1rem;
+}

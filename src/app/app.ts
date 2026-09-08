@@ -8,6 +8,7 @@ import { GameList } from './game-list/game-list';
   imports: [GameList, GenresList, NavBar],
   selector: 'app-root',
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class App {
   private ghStore = inject(GameHubSignalStore);

@@ -1,4 +1,4 @@
-<ul class="w-full">
+<ul class="list-container">
   @if (this.store.areGenresLoading()) {
     <p>Genres are loading</p>
   }
@@ -11,11 +11,11 @@
         [isClickable]="true"
         [isSelected]="selectedGenreId() === genre.id"
         (cardClick)="confirmSelect(genre.id)"
-        class="rounded-l-none"
+        class="list-container__card"
       >
-        <div class="body flex gap-2 p-4">
-          <img class="rounded-md w-8 h-8" [src]="genre.backgroundImage" alt="Genre image" />
-          <p class="text-xl text-bold">{{ genre.name }}</p>
+        <div class="body card__body">
+          <img class="body__image" [src]="genre.backgroundImage" alt="Genre image" />
+          <p class="body__text">{{ genre.name }}</p>
         </div>
       </app-card>
     </li>

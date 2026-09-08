@@ -34,6 +34,7 @@ const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
+  styleUrl: './game-list.css',
   providers: [
     provideIcons({
       simpleSteam,
@@ -46,9 +47,6 @@ const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
       faSolidGamepad,
     }),
   ],
-  host: {
-    class: 'grid grid-cols-3 items-stretch justify-between gap-4 p-4',
-  },
 })
 export class GameList {
   // Signal store

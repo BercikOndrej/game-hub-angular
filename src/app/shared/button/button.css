@@ -1,14 +1,15 @@
-.container {
+.button-container {
   padding: 0.5em;
-  background-color: lightgrey;
+  background-color: whitesmoke;
   border-radius: 0.5em;
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
+  box-shadow: 4px -4px 4px rgba(0, 0, 0, 0.1);
 }
 
-.container:hover {
-  background-color: gray;
+.button-container:hover {
+  background-color: lightgray;
   transition-duration: 500ms;
   transform: scale(1.1);
   transition-property: transform, background-color;

@@ -1,8 +1,6 @@
-<section id="navigation" class="w-full flex justify-between p-4 items-center gap-4">
-  <div class="flex items-center gap-1">
-    <img src="logo.webp" alt="Logo" class="w-16 h-16" />
-  </div>
-  <app-search-box class="flex-1"></app-search-box>
+<section id="navigation" class="navbar-container">
+  <img src="logo.webp" alt="Logo" class="navbar-container__icon" />
+  <app-search-box class="navbar-container__search-box"></app-search-box>
   <app-button (click)="toggleTheme()">
     <mat-icon>bedtime</mat-icon>
   </app-button>

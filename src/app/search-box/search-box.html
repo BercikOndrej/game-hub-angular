@@ -1,14 +1,14 @@
 <mat-icon>search</mat-icon>
 <input
   #searchInput
-  class="w-full p-2 border-0 focus:border-0 focus:outline-none"
+  class="search-input"
   [(ngModel)]="value"
   (keyup.enter)="searchGames()"
   matsInput
   maxlength="256"
   placeholder="Search..."
 />
-<mat-hint class="text-gray-500" align="end">{{ value().length }}/256</mat-hint>
+<mat-hint class="search-hint" align="end">{{ value().length }}/256</mat-hint>
 @if (searchInput.value.length > 0) {
-  <mat-icon (click)="clearAndFocusInput()">close</mat-icon>
+  <mat-icon class="clickable" (click)="clearAndFocusInput()">close</mat-icon>
 }

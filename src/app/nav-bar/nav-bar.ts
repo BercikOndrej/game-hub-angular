@@ -7,6 +7,7 @@ import { SearchBox } from '../search-box/search-box';
   imports: [MatIcon, Button, SearchBox],
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.html',
+  styleUrl: './nav-bar.css',
 })
 export class NavBar {
   protected toggleTheme(): void {

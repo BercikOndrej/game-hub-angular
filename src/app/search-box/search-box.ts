@@ -7,10 +7,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, MatIcon, MatHint],
   selector: 'app-search-box',
   templateUrl: './search-box.html',
-  host: {
-    class:
-      'bg-gray-200 rounded-xl hover:bg-gray-300 transform duration-300 flex items-center justify-between gap-2 px-4 focus-within:border focus-within:border-black',
-  },
+  styleUrl: './search-box.css',
 })
 export class SearchBox {
   protected value = signal('');

@@ -1,4 +1,4 @@
-.container {
+.dialog-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +9,6 @@
   flex-direction: column;
   gap: 1em;
   border-radius: 1em;
-  background-color: white;
+  background-color: whitesmoke;
   padding: 2em;
 }

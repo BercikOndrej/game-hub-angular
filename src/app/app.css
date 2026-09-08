@@ -1,0 +1,19 @@
+.header-content {
+  grid-column: 1/2;
+}
+
+.main-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.main-content__aside {
+  width: 17%;
+}
+
+.main-content__content {
+  flex-grow: 1;
+}

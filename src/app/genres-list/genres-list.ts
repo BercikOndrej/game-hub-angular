@@ -17,6 +17,7 @@ import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
 @Component({
   selector: 'app-genres-list',
   templateUrl: './genres-list.html',
+  styleUrl: './genres-list.css',
   imports: [Card],
 })
 export class GenresList {
