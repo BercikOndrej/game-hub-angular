@@ -5,6 +5,12 @@ export interface GamePlatformDto {
   released_at: string | null;
 }
 
+export interface PlatformDto {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface GameDto {
   id: number;
   slug: string;

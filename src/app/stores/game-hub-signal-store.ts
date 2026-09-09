@@ -53,7 +53,8 @@ export class GameHubSignalStore {
 
   public loadGames() {
     this.apiService
-      .loadGames()
+      // This empty array is only workaround to NOT implement filtering in this type of store
+      .loadGames([])
       .pipe(
         catchError((err: HttpErrorResponse) => {
           console.error('Api error during games loading: ', err.message);
