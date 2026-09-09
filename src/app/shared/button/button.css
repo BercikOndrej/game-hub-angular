@@ -4,11 +4,13 @@
   border-radius: 0.5em;
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 2em;
   box-shadow: 4px -4px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .button-container:hover {
+  cursor: pointer;
   background-color: lightgray;
   transition-duration: 500ms;
   transform: scale(1.1);
