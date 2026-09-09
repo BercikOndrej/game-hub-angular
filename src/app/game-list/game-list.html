@@ -1,24 +1,30 @@
+<h2 class="game-title">Games</h2>
 @if (this.store.areGamesLoading()) {
   <p>Games are loading...</p>
 }
 @if (this.store.gamesError()) {
   <p class="error-text">Error occures: {{ this.store.gamesError()?.message }}</p>
 }
-@for (game of this.store.games(); track game.id) {
-  <app-card class="game-card" [isClickable]="true" [hasHeader]="true" [hasFooter]="true">
-    <div class="header">
-      <img [src]="game.backgroundImage" alt="Game image" class="header__image" />
-    </div>
-    <div class="body card__body">
-      <span class="body__text">
-        {{ game.name }}
-      </span>
-      <app-rating-stars [rating]="game.rating" />
-    </div>
-    <div class="footer card__footer">
-      @for (pair of normalizePlatformIcons(game.platforms) | keyvalue; track pair.key) {
-        <ng-icon [appTooltip]="pair.key" size="20" [name]="pair.value"></ng-icon>
-      }
-    </div>
-  </app-card>
-}
+<!-- Here will be filtering -->
+<div class="game-container">
+  @for (game of this.store.games(); track game.id) {
+    <app-card class="game-card" [isClickable]="true" [hasHeader]="true" [hasFooter]="true">
+      <div class="header">
+        <img [src]="game.backgroundImage" alt="Game image" class="header__image" />
+      </div>
+      <div class="body card__body">
+        <span class="body__text">
+          {{ game.name }}
+        </span>
+      </div>
+      <div class="footer card__footer">
+        <app-rating-stars [rating]="game.rating" />
+        <div class="footer__platform-container">
+          @for (pair of normalizePlatformIcons(game.platforms) | keyvalue; track pair.key) {
+            <ng-icon [appTooltip]="pair.key" size="20" [name]="pair.value"></ng-icon>
+          }
+        </div>
+      </div>
+    </app-card>
+  }
+</div>

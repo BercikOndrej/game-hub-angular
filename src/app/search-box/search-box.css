@@ -22,6 +22,13 @@
   width: 100%;
   padding: 0.5em;
   border: none;
+  background-color: whitesmoke;
+}
+
+:host:hover .search-input {
+  background-color: lightgray;
+  transition-duration: 500ms;
+  transition-property: transform, background-color;
 }
 
 .search-input:focus {
@@ -29,7 +36,7 @@
   border: none;
 }
 
-.search-hint {
+.search-input .search-hint {
   color: gray;
 }
 
