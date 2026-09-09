@@ -1,0 +1,27 @@
+.overlay-container {
+  display: block;
+  border: none;
+  border-radius: 1em;
+  background-color: white;
+  overflow: hidden;
+}
+
+.overlay-container__item {
+  display: flex;
+  min-width: 20em;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  padding: 0.5em 2em;
+}
+
+.overlay-container__item:hover {
+  transition-duration: 500ms;
+  background-color: lightgray;
+  cursor: pointer;
+  transition-property: background-color, transform;
+}
+
+.overlay-container__item--selected {
+  background-color: lightgray;
+}

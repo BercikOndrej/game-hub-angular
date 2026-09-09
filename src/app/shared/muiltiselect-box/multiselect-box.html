@@ -1,0 +1,27 @@
+<ng-template cdkPortal>
+  <ul
+    cdkListbox
+    cdkListboxMultiple
+    [cdkListboxValue]="selected()"
+    (cdkListboxValueChange)="onItemsChange($event)"
+    class="overlay-container"
+  >
+    @for (item of items(); track item.id) {
+      <li
+        class="overlay-container__item"
+        [class.overlay-container__item--selected]="selected().includes(item.id)"
+        [cdkOption]="item.id"
+      >
+        {{ item.name }}
+        @if (selected().includes(item.id)) {
+          <ng-icon name="faSolidCheck" />
+        }
+      </li>
+    }
+  </ul>
+</ng-template>
+
+<app-button (click)="onOpen()">
+  <label for="platforms">{{ nameLabel() }}</label>
+  <ng-icon [name]="isOpen() ? 'faSolidChevronUp' : 'faSolidChevronDown'" class="select-arrow" />
+</app-button>
