@@ -11,10 +11,11 @@ import { GameList } from './game-list/game-list';
   styleUrl: './app.css',
 })
 export class App {
-  private ghStore = inject(GameHubSignalStore);
+  // We are not using clasic simple signal store right now
+  // private ghStore = inject(GameHubSignalStore);
 
   constructor() {
-    this.ghStore.loadGames();
-    this.ghStore.loadGenres();
+    // this.ghStore.loadGames();
+    // this.ghStore.loadGenres();
   }
 }
