@@ -15,7 +15,7 @@
 }
 
 :host:focus-within {
-  border: 1px solid black;
+  outline: 1px solid black;
 }
 
 .search-input {
