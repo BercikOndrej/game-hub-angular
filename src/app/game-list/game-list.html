@@ -5,7 +5,22 @@
 @if (this.store.gamesError()) {
   <p class="error-text">Error occures: {{ this.store.gamesError()?.message }}</p>
 }
-<!-- Here will be filtering -->
+
+@if (store.arePlatformsLoading()) {
+  <p>Platforms are loading...</p>
+}
+@if (store.platformsError()) {
+  <p class="error-text">Error ocures: {{ this.store.platformsError()?.message }}</p>
+}
+<!-- Filters -->
+<div>
+  <app-multiselect-box
+    name="Platforms"
+    [items]="store.platforms()!"
+    (onSelectionChange)="changeSelectedPlatforms($event)"
+  />
+</div>
+
 <div class="game-container">
   @for (game of this.store.games(); track game.id) {
     <app-card class="game-card" [isClickable]="true" [hasHeader]="true" [hasFooter]="true">

@@ -18,6 +18,7 @@ import {
 import { faBrandXbox } from '@ng-icons/font-awesome/brands';
 import { faSolidGamepad } from '@ng-icons/font-awesome/solid';
 import { Tooltip } from '../directives/tooltip';
+import { MultiselectBox } from '../shared/muiltiselect-box/multiselect-box';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',
@@ -31,7 +32,7 @@ const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
 };
 
 @Component({
-  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe],
+  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe, MultiselectBox],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
   styleUrl: './game-list.css',
@@ -58,6 +59,10 @@ export class GameList {
 
   // Rx resource store
   protected store = inject(RxResourceGameHubStore);
+
+  protected changeSelectedPlatforms = (values: number[]): void => {
+    this.store.setSeledctedPlatformIds(values);
+  };
 
   protected normalizePlatformIcons(platforms: readonly Platform[]): Record<string, string> {
     return platforms
