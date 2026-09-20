@@ -46,7 +46,7 @@
 .card__footer {
   width: 100%;
   display: flex;
-  gap: 0.25em;
+  gap: 1em;
   justify-content: space-between;
   padding: 1em;
   margin-top: auto;

@@ -23,7 +23,7 @@
 
 <div class="game-container">
   @for (game of this.store.games(); track game.id) {
-    <app-card class="game-card" [isClickable]="true" [hasHeader]="true" [hasFooter]="true">
+    <app-card class="game-card" [isClickable]="true">
       <div class="header">
         <img [src]="game.backgroundImage" alt="Game image" class="header__image" />
       </div>

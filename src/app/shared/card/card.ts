@@ -1,4 +1,4 @@
-import { Component, Host, input, output } from '@angular/core';
+import { Component, computed, contentChild, ElementRef, input, output } from '@angular/core';
 
 @Component({
   imports: [],
@@ -12,11 +12,15 @@ import { Component, Host, input, output } from '@angular/core';
   },
 })
 export class Card {
-  public hasHeader = input(false);
-  public hasFooter = input(false);
   public isClickable = input(false);
   public isSelected = input(false);
   public cardClick = output();
+
+  protected headerContent = contentChild<ElementRef<HTMLElement>>('.header');
+  protected hasHeader = computed<boolean>(() => this.headerContent != undefined);
+
+  protected footerContent = contentChild<ElementRef<HTMLElement>>('.footer');
+  protected hasFooter = computed<boolean>(() => this.footerContent != undefined);
 
   protected handleClick() {
     if (this.isClickable()) {
