@@ -1,24 +1,22 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
-import { GameHubSignalStore } from '../stores/game-hub-signal-store';
-import { Card } from '../shared/card/card';
-import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
-import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
-import { RatingStars } from '../shared/rating-stars/rating-stars';
-import { Platform } from '../types/Games';
+import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
+import { faBrandXbox } from '@ng-icons/font-awesome/brands';
+import { faSolidGamepad } from '@ng-icons/font-awesome/solid';
 import {
+  simpleAndroid,
+  simpleApple,
+  simpleGooglechrome,
   simpleLinux,
   simplePlaystation,
   simpleSteam,
-  simpleAndroid,
-  simpleGooglechrome,
-  simpleApple,
 } from '@ng-icons/simple-icons';
-import { faBrandXbox } from '@ng-icons/font-awesome/brands';
-import { faSolidGamepad } from '@ng-icons/font-awesome/solid';
-import { Tooltip } from '../directives/tooltip';
+import { Tooltip } from '../directives/tooltip/tooltip';
+import { Card } from '../shared/card/card';
 import { MultiselectBox } from '../shared/muiltiselect-box/multiselect-box';
+import { RatingStars } from '../shared/rating-stars/rating-stars';
+import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
+import { Platform } from '../types/Games';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',

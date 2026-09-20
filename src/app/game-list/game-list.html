@@ -33,7 +33,7 @@
         </span>
       </div>
       <div class="footer card__footer">
-        <app-rating-stars [rating]="game.rating" />
+        <app-rating-stars [rating]="game.rating" [appTooltip]="game.rating.toString()" />
         <div class="footer__platform-container">
           @for (pair of normalizePlatformIcons(game.platforms) | keyvalue; track pair.key) {
             <ng-icon [appTooltip]="pair.key" size="20" [name]="pair.value"></ng-icon>
