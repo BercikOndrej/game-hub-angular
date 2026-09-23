@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ApiService } from '../services/api-service';
+import { ApiService, GameQuery } from '../services/api-service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Platform } from '../types/Games';
 
@@ -9,11 +9,14 @@ export default class RxResourceGameHubStore {
 
   private selectedPlatformIds = signal<number[]>([]);
 
+  private selectedGenreId = signal<number | null>(null);
+
   private gamesResource = rxResource({
     params: () => ({
       platformIds: this.selectedPlatformIds(),
+      genreId: this.selectedGenreId(),
     }),
-    stream: ({ params }) => this.apiService.loadGames(params.platformIds),
+    stream: ({ params }) => this.apiService.loadGames(params satisfies GameQuery),
   });
 
   private genresResource = rxResource({
@@ -33,6 +36,10 @@ export default class RxResourceGameHubStore {
     this.selectedPlatformIds.set(foundedList ? [...foundedList] : []);
   };
 
+  private setGenreIdFunction = (genreId: number): void => {
+    this.selectedGenreId.set(genreId);
+  };
+
   // Public API
   // Games
   public games = this.gamesResource.value;
@@ -43,6 +50,7 @@ export default class RxResourceGameHubStore {
   public genres = this.genresResource.value;
   public areGenresLoading = this.genresResource.isLoading;
   public genresError = this.genresResource.error;
+  public setGenreId = this.setGenreIdFunction;
 
   // Platforms
   public platforms = this.platformResource.value;

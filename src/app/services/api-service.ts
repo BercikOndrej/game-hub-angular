@@ -6,6 +6,11 @@ import { Game, Genre, Platform } from '../types/Games';
 import { GameDto, GenreDto, PlatformDto } from '../types/Dtos';
 import * as MapHelpers from '../types/map-helpers';
 
+export interface GameQuery {
+  platformIds: number[];
+  genreId: number | null;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private readonly GenresUrl = 'https://api.rawg.io/api/genres';
@@ -13,10 +18,13 @@ export class ApiService {
   private readonly PlatformsUrl = 'https://api.rawg.io/api/platforms/lists/parents';
   private client = inject(HttpClient);
 
-  public loadGames(platformIds: number[]): Observable<Game[]> {
+  public loadGames(query: GameQuery): Observable<Game[]> {
     let params = new HttpParams();
-    if (platformIds.length > 0) {
-      params = params.set('platforms', platformIds.join(','));
+    if (query.platformIds.length > 0) {
+      params = params.set('parent_platforms', query.platformIds.join(','));
+    }
+    if (query.genreId) {
+      params = params.set('genres', query.genreId.toString());
     }
 
     return this.client

@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import {
   Component,
   effect,
@@ -9,9 +10,6 @@ import {
 } from '@angular/core';
 import { Card } from '../shared/card/card';
 import { ConfirmDialog, ConfirmDialogData } from '../shared/confirm-dialog/confirm-dialog';
-import { Dialog } from '@angular/cdk/dialog';
-import { GameHubSignalStore } from '../stores/game-hub-signal-store';
-import HttpResourcesGameHubStore from '../stores/http-resources-game-hub-store';
 import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
 
 @Component({
@@ -65,6 +63,7 @@ export class GenresList {
     ref.closed.subscribe((confirmed) => {
       if (confirmed) {
         this.selectedGenreId.set(id);
+        this.store.setGenreId(id);
       }
     });
   }

@@ -18,6 +18,7 @@ import { RatingStars } from '../shared/rating-stars/rating-stars';
 import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
 import { Platform } from '../types/Games';
 import { Button } from '../shared/button/button';
+import { GameQuery } from '../services/api-service';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',
@@ -57,7 +58,7 @@ export class GameList {
   // protected store = inject(HttpResourcesGameHubStore);
 
   // Rx resource store
-  protected store = inject(RxResourceGameHubStore);
+  protected readonly store = inject(RxResourceGameHubStore);
 
   protected readonly selectedPlatformIds = signal<number[]>([]);
 
