@@ -1,5 +1,5 @@
 import { KeyValuePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { faBrandXbox } from '@ng-icons/font-awesome/brands';
 import { faSolidGamepad } from '@ng-icons/font-awesome/solid';
@@ -17,6 +17,7 @@ import { MultiselectBox } from '../shared/muiltiselect-box/multiselect-box';
 import { RatingStars } from '../shared/rating-stars/rating-stars';
 import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
 import { Platform } from '../types/Games';
+import { Button } from '../shared/button/button';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',
@@ -30,7 +31,7 @@ const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
 };
 
 @Component({
-  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe, MultiselectBox],
+  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe, MultiselectBox, Button],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
   styleUrl: './game-list.css',
@@ -58,9 +59,15 @@ export class GameList {
   // Rx resource store
   protected store = inject(RxResourceGameHubStore);
 
+  protected readonly selectedPlatformIds = signal<number[]>([]);
+
   protected changeSelectedPlatforms = (values: number[]): void => {
-    this.store.setSeledctedPlatformIds(values);
+    this.selectedPlatformIds.set(values);
   };
+
+  protected filterGames(): void {
+    this.store.setSeledctedPlatformIds(this.selectedPlatformIds());
+  }
 
   protected normalizePlatformIcons(platforms: readonly Platform[]): Record<string, string> {
     return platforms

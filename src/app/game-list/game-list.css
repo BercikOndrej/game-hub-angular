@@ -5,6 +5,14 @@
   font-size: 3em;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 1em 1em 1em 0;
+  gap: 2em;
+}
+
 .game-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

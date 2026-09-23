@@ -13,6 +13,5 @@
   cursor: pointer;
   background-color: lightgray;
   transition-duration: 500ms;
-  transform: scale(1.1);
   transition-property: transform, background-color;
 }
