@@ -12,13 +12,12 @@ import {
   simpleSteam,
 } from '@ng-icons/simple-icons';
 import { Tooltip } from '../directives/tooltip/tooltip';
+import { Button } from '../shared/button/button';
 import { Card } from '../shared/card/card';
 import { MultiselectBox } from '../shared/muiltiselect-box/multiselect-box';
 import { RatingStars } from '../shared/rating-stars/rating-stars';
-import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
+import RxResourceGameHubStore from '../stores/rx-resource-game-hub.store';
 import { Platform } from '../types/Games';
-import { Button } from '../shared/button/button';
-import { GameQuery } from '../services/api-service';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',

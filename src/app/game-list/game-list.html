@@ -24,7 +24,7 @@
 </div>
 
 <div class="game-container">
-  @for (game of this.store.games(); track game.id) {
+  @for (game of store.games(); track game.id) {
     <app-card class="game-card" [isClickable]="true">
       <div class="header">
         <img [src]="game.backgroundImage" alt="Game image" class="header__image" />
@@ -45,3 +45,5 @@
     </app-card>
   }
 </div>
+
+<app-button [disabled]="true" (click)="store.loadMore()">Load more</app-button>

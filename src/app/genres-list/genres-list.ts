@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Card } from '../shared/card/card';
 import { ConfirmDialog, ConfirmDialogData } from '../shared/confirm-dialog/confirm-dialog';
-import RxResourceGameHubStore from '../stores/rx-resource-game-hub.-store';
+import RxResourceGameHubStore from '../stores/rx-resource-game-hub.store';
 
 @Component({
   selector: 'app-genres-list',

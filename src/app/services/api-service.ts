@@ -9,6 +9,8 @@ import * as MapHelpers from '../types/map-helpers';
 export interface GameQuery {
   platformIds: number[];
   genreId: number | null;
+  page: number;
+  pageSize: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -18,23 +20,24 @@ export class ApiService {
   private readonly PlatformsUrl = 'https://api.rawg.io/api/platforms/lists/parents';
   private client = inject(HttpClient);
 
-  private cache: Map<string, Observable<Game[]>> = new Map();
+  // private cache: Map<string, Observable<Game[]>> = new Map();
 
-  public invalidateCache(): void {
-    this.cache.clear();
-  }
+  // public invalidateCache(): void {
+  //   this.cache.clear();
+  // }
 
-  public loadGames(query: GameQuery): Observable<Game[]> {
+  public loadGames(query: GameQuery): Observable<ApiResponse<Game>> {
     // Json could come insorted -> different string for same query
     // map function map key to tuple
-    const key = JSON.stringify(
-      Object.keys(query)
-        .sort()
-        .map((key) => [key, query[key as keyof GameQuery]]),
-    );
-    if (this.cache.has(key)) {
-      return this.cache.get(key)!;
-    }
+    // const key = JSON.stringify(
+    //   Object.keys(query)
+    //     .sort()
+    //     .map((key) => [key, query[key as keyof GameQuery]]),
+    // );
+
+    // if (this.cache.has(key)) {
+    //   return this.cache.get(key)!;
+    // }
 
     let params = new HttpParams();
     if (query.platformIds.length > 0) {
@@ -44,12 +47,18 @@ export class ApiService {
       params = params.set('genres', query.genreId.toString());
     }
 
+    params = params.set('page', query.page);
+    params = params.set('page_size', query.pageSize);
+
     const request = this.client.get<ApiResponse<GameDto>>(this.GamesUrl, { params }).pipe(
-      map((response) => response.results.map((dto: GameDto) => MapHelpers.dtoToGame(dto))),
+      map((response) => ({
+        ...response,
+        results: response.results.map((dto: GameDto) => MapHelpers.dtoToGame(dto)),
+      })),
       shareReplay({ bufferSize: 1, refCount: false }),
     );
 
-    this.cache.set(key, request);
+    // this.cache.set(key, request);
     return request;
   }
 
