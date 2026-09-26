@@ -13,5 +13,16 @@
   cursor: pointer;
   background-color: lightgray;
   transition-duration: 500ms;
-  transition-property: transform, background-color;
+}
+
+.button--disabled {
+  color: lightgray;
+  background-color: white;
+  border: solid gray 1px;
+}
+
+.button--disabled:hover {
+  cursor: default;
+  background-color: white;
+  transform: none;
 }

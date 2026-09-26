@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './button.html',
   styleUrl: './button.css',
 })
-export class Button {}
+export class Button {
+  public readonly disabled = input(false);
+}
