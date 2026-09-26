@@ -2,6 +2,7 @@ import { computed, effect, inject, Injectable, linkedSignal, signal } from '@ang
 import { ApiService, GameQuery } from '../services/api-service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Game, Platform } from '../types/Games';
+import { ApiResponse } from '../types/ApiResponse';
 
 @Injectable({ providedIn: 'root' })
 export default class RxResourceGameHubStore {
@@ -40,24 +41,29 @@ export default class RxResourceGameHubStore {
     stream: ({ params }) => this.apiService.loadGames(params satisfies GameQuery),
   });
 
-  private _games = signal<Game[]>([]);
-
-  private _hasMore = computed(
-    () => this._games().length < (this.gamesPageResource.value()?.count ?? 0),
-  );
-
-  private _synch = effect(() => {
-    const loadedGames = this.gamesPageResource.value()?.results ?? [];
-    this._games.update((prev) => [...prev, ...loadedGames]);
+  private _games = linkedSignal<{ page: number; response: ApiResponse<Game> | undefined }, Game[]>({
+    source: () => ({
+      page: this.page(),
+      response: this.gamesPageResource.hasValue() ? this.gamesPageResource.value() : undefined,
+    }),
+    computation: ({ page, response }, prev) => {
+      const baseItems = page === 1 ? [] : (prev?.value ?? []);
+      return [...baseItems, ...(response?.results ?? [])];
+    },
   });
+
+  private _hasMore = computed(() =>
+    this.gamesPageResource.hasValue()
+      ? this._games().length < this.gamesPageResource.value().count
+      : false,
+  );
 
   private setInicialGameState = (): void => {
     this.page.set(1);
-    this._games.set([]);
   };
 
   private _loadMore = (): void => {
-    if (this.gamesPageResource.isLoading() || this.gamesPageResource.error() || !this.hasMore()) {
+    if (!this.hasMore() || this.gamesPageResource.isLoading() || this.gamesPageResource.error()) {
       return;
     }
     this.page.update((prev) => prev + 1);
@@ -108,7 +114,7 @@ export default class RxResourceGameHubStore {
       .filter((id: number) => ids.includes(id));
 
     this.selectedPlatformIds.set(foundedList ? [...foundedList] : []);
-    this.setInicialGameState;
+    this.setInicialGameState();
   };
 
   // API

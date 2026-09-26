@@ -1,8 +1,8 @@
 <h2 class="game-title">Games</h2>
-@if (this.store.areGamesLoading()) {
+@if (store.areGamesLoading()) {
   <p>Games are loading...</p>
 }
-@if (this.store.gamesError()) {
+@if (store.gamesError()) {
   <p class="error-text">Error occures: {{ this.store.gamesError()?.message }}</p>
 }
 
@@ -46,4 +46,8 @@
   }
 </div>
 
-<app-button [disabled]="true" (click)="store.loadMore()">Load more</app-button>
+<div appInfiniteScrolling (scrollToEnd)="store.loadMore()"></div>
+
+@if (store.areGamesLoading()) {
+  <p style="padding-bottom: 2em">Games are loading...</p>
+}

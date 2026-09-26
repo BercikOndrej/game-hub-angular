@@ -55,7 +55,7 @@ export class ApiService {
         ...response,
         results: response.results.map((dto: GameDto) => MapHelpers.dtoToGame(dto)),
       })),
-      shareReplay({ bufferSize: 1, refCount: false }),
+      // shareReplay({ bufferSize: 1, refCount: false }),
     );
 
     // this.cache.set(key, request);

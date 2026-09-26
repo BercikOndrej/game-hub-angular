@@ -18,6 +18,7 @@ import { MultiselectBox } from '../shared/muiltiselect-box/multiselect-box';
 import { RatingStars } from '../shared/rating-stars/rating-stars';
 import RxResourceGameHubStore from '../stores/rx-resource-game-hub.store';
 import { Platform } from '../types/Games';
+import { InfiniteScrollingDirective } from '../directives/InfiniteScrollingDirective';
 
 const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
   Pc: 'simpleSteam',
@@ -31,7 +32,16 @@ const PLATFORM_ICON_MAP: Partial<Record<string, string>> = {
 };
 
 @Component({
-  imports: [Card, RatingStars, NgIcon, Tooltip, KeyValuePipe, MultiselectBox, Button],
+  imports: [
+    Card,
+    RatingStars,
+    NgIcon,
+    Tooltip,
+    KeyValuePipe,
+    MultiselectBox,
+    Button,
+    InfiniteScrollingDirective,
+  ],
   selector: 'app-game-list',
   templateUrl: './game-list.html',
   styleUrl: './game-list.css',
