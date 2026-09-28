@@ -9,6 +9,7 @@ import * as MapHelpers from '../types/map-helpers';
 export interface GameQuery {
   platformIds: number[];
   genreId: number | null;
+  search: string | null;
   page: number;
   pageSize: number;
 }
@@ -45,6 +46,10 @@ export class ApiService {
     }
     if (query.genreId) {
       params = params.set('genres', query.genreId.toString());
+    }
+
+    if (query.search) {
+      params = params.set('search', query.search);
     }
 
     params = params.set('page', query.page);

@@ -1,8 +1,8 @@
-import { computed, effect, inject, Injectable, linkedSignal, signal } from '@angular/core';
-import { ApiService, GameQuery } from '../services/api-service';
+import { computed, inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { Game, Platform } from '../types/Games';
+import { ApiService, GameQuery } from '../services/api-service';
 import { ApiResponse } from '../types/ApiResponse';
+import { Game, Platform } from '../types/Games';
 
 @Injectable({ providedIn: 'root' })
 export default class RxResourceGameHubStore {
@@ -13,7 +13,8 @@ export default class RxResourceGameHubStore {
     computation: (games, prev) => [...(prev?.value ?? []), ...(games || [])],
   });
 
-  // #region Page
+  // #region Page and search
+  private readonly search = signal<string | null>('');
 
   private pageSize = 20;
   private setPageSizeFunction = (page: number) => {
@@ -23,8 +24,13 @@ export default class RxResourceGameHubStore {
     this.pageSize = page;
   };
 
+  private setSearchFunction = (input: string): void => {
+    this.search.set(input === '' ? null : input);
+  };
+
   // API
   public setPageSize = this.setPageSizeFunction;
+  public setSearch = this.setSearchFunction;
 
   // #endregion
 
@@ -35,6 +41,7 @@ export default class RxResourceGameHubStore {
     params: () => ({
       platformIds: this.selectedPlatformIds(),
       genreId: this.selectedGenreId(),
+      search: this.search(),
       page: this.page(),
       pageSize: this.pageSize,
     }),
