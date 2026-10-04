@@ -1,10 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, shareReplay } from 'rxjs';
-import { ApiResponse } from '../types/ApiResponse';
-import { GameDto, GenreDto, PlatformDto } from '../types/Dtos';
-import { Game, Genre, Platform } from '../types/Games';
+import { map, Observable } from 'rxjs';
+import { ApiResponse } from '../types/api-response';
 import * as MapHelpers from '../types/map-helpers';
+import { GameDto, GenreDto, PlatformDto } from '../types/dtos';
+import { Game, Genre, Platform } from '../types/games';
 
 export interface GameQuery {
   platformIds: number[];

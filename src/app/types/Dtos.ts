@@ -1,4 +1,4 @@
-import { Platform } from './Games';
+import { Platform } from './games';
 
 export interface GamePlatformDto {
   platform: Platform;

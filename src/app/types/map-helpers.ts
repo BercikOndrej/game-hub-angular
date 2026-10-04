@@ -1,5 +1,5 @@
-import { GameDto, GenreDto, PlatformDto } from './Dtos';
-import { Game, Genre, Platform } from './Games';
+import { GameDto, GenreDto, PlatformDto } from './dtos';
+import { Game, Genre, Platform } from './games';
 
 export const dtoToGenre = (dto: GenreDto): Genre =>
   ({
