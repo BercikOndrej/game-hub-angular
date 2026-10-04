@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+.toast-container {
+  position: relative;
+  word-wrap: break-word;
+  padding: 1em 2em;
+  background-color: gray;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toast-text {
+  font-weight: 700;
+  color: white;
+  margin-top: 2em;
+}
+
+.close-button {
+  margin-left: auto;
+  --mat-icon-color: white;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.enter-animation {
+  animation: slide-in 2s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-1000px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.leave-animation {
+  animation: slide-out 2s forwards;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translatex(0);
+  }
+  to {
+    transform: translateX(-1000px);
+  }
+}

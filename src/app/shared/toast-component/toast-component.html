@@ -1,0 +1,6 @@
+<div class="toast-container enter-animation" [class.leave-animation]="leaving()">
+  <button (click)="onClose.emit()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+  <p class="toast-text">{{ message() }}</p>
+</div>
