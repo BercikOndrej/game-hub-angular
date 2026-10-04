@@ -1,0 +1,10 @@
+<div class="items-container">
+  @for (item of items(); track item.id) {
+    <app-toast-component
+      (onClose)="deleteToast(item.id)"
+      [message]="item.message"
+      animate.enter="enter-animation"
+      animate.leave="leave-animation"
+    ></app-toast-component>
+  }
+</div>

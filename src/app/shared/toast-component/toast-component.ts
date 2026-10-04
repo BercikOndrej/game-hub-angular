@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -10,5 +10,4 @@ import { MatIcon } from '@angular/material/icon';
 export class ToastComponent {
   public message = input.required<string>();
   public onClose = output<void>();
-  public leaving = signal<boolean>(false);
 }

@@ -1,0 +1,32 @@
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: transparent;
+}
+
+.enter-animation {
+  animation: slide-in 1s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-1000px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.leave-animation {
+  animation: slide-out 1s forwards;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translatex(0);
+  }
+  to {
+    transform: translateX(-1000px);
+  }
+}

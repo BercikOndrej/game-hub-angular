@@ -1,45 +1,68 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, inject, Injectable, signal } from '@angular/core';
-import { ToastComponent } from '../shared/toast-component/toast-component';
+import { ComponentRef, inject, Service, signal } from '@angular/core';
+import { ToastItem } from '../types/toast';
+import { ToastContainer } from '../shared/toast-container/toast-container';
 
-const ANIMATION_DURATION = 1000;
-
-@Injectable({ providedIn: 'root' })
+@Service()
 export class ToastService {
   private readonly overlay = inject(Overlay);
 
-  private overlayRef?: OverlayRef;
-  private timer?: ReturnType<typeof setTimeout>;
-  private componentRef?: ComponentRef<ToastComponent>;
+  private activeItems = signal<ToastItem[]>([]);
 
-  public show(message: string, duration: number = 5000): void {
-    this.disposeNow();
+  private overlayRef?: OverlayRef;
+  private componentRef?: ComponentRef<ToastContainer>;
+  private timers = new Map<string, ReturnType<typeof setTimeout>>();
+
+  public show(message: string, displayDuration: number = 5000): void {
+    const id = crypto.randomUUID();
+    const newToast = {
+      id: id,
+      message: message,
+      animationDuration: displayDuration,
+    };
+
+    this.activeItems.update((prev) => [...prev, newToast]);
+
+    this.attachContainer();
+
+    this.timers?.set(
+      id,
+      setTimeout(() => this.dismiss(id), displayDuration),
+    );
+    this.componentRef?.setInput('items', this.activeItems());
+  }
+
+  public dismiss(id: string): void {
+    const timeout = this.timers?.get(id);
+    if (!timeout) {
+      return;
+    }
+
+    clearTimeout(timeout);
+    this.timers.delete(id);
+    this.activeItems.update((prev) => prev.filter((item) => item.id !== id));
+    this.componentRef?.setInput('items', this.activeItems());
+
+    if (this.activeItems().length === 0) {
+      setTimeout(() => {
+        this.overlayRef?.dispose();
+        this.overlayRef = undefined;
+        this.componentRef = undefined;
+      }, 1000);
+    }
+  }
+
+  private attachContainer() {
+    if (this.overlayRef) {
+      return;
+    }
 
     this.overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().bottom('24px').left('24px'),
     });
 
-    const portal = new ComponentPortal(ToastComponent);
+    const portal = new ComponentPortal(ToastContainer);
     this.componentRef = this.overlayRef.attach(portal);
-    this.componentRef.setInput('message', message);
-    this.componentRef.instance.onClose.subscribe(() => {
-      this.dismiss();
-    });
-
-    this.timer = setTimeout(() => this.dismiss(), duration);
-  }
-
-  private dismiss(): void {
-    clearInterval(this.timer);
-    this.componentRef?.instance.leaving.set(true); // spustí leave animaci
-    this.timer = setTimeout(() => this.disposeNow(), ANIMATION_DURATION);
-  }
-
-  private disposeNow(): void {
-    clearTimeout(this.timer);
-    this.overlayRef?.dispose();
-    this.overlayRef = undefined;
-    this.componentRef = undefined;
   }
 }
