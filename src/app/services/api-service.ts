@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ApiResponse } from '../types/api-response';
 import * as MapHelpers from '../types/map-helpers';
-import { GameDto, GenreDto, PlatformDto } from '../types/dtos';
+import { GameDto, GenreDto } from '../types/dtos';
 import { Game, Genre, Platform } from '../types/games';
 
 export interface GameQuery {
@@ -87,11 +87,7 @@ export class ApiService {
 
   public loadPlatforms(): Observable<Platform[]> {
     return this.client
-      .get<ApiResponse<PlatformDto>>(this.PlatformsUrl, {})
-      .pipe(
-        map((response) =>
-          response.results.map((dto: PlatformDto) => MapHelpers.dtoToPlatform(dto)),
-        ),
-      );
+      .get<ApiResponse<Platform>>(this.PlatformsUrl, {})
+      .pipe(map((response) => response.results));
   }
 }

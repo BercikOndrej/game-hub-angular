@@ -1,5 +1,5 @@
-import { GameDto, GenreDto, PlatformDto } from './dtos';
-import { Game, Genre, Platform } from './games';
+import { GameDto, GenreDto } from './dtos';
+import { Game, Genre } from './games';
 
 export const dtoToGenre = (dto: GenreDto): Genre =>
   ({
@@ -14,10 +14,3 @@ export const dtoToGame = (dto: GameDto): Game =>
     backgroundImage: dto.background_image,
     platforms: dto.platforms.map(({ platform }) => platform),
   }) satisfies Game;
-
-export const dtoToPlatform = (dto: PlatformDto): Platform =>
-  ({
-    id: dto.id,
-    name: dto.name,
-    slug: dto.slug,
-  }) satisfies Platform;
