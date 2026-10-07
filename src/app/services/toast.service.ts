@@ -46,6 +46,9 @@ export class ToastService {
 
     if (this.activeItems().length === 0) {
       setTimeout(() => {
+        if (this.activeItems().length < 1) {
+          return;
+        }
         this.overlayRef?.dispose();
         this.overlayRef = undefined;
         this.componentRef = undefined;

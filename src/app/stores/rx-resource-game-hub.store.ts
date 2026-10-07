@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ApiService, GameQuery } from '../services/api-service';
+import { ApiService, GameQuery } from '../services/api.service';
 import { ApiResponse } from '../types/api-response';
 import { Game, Platform } from '../types/games';
 

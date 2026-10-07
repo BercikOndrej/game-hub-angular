@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { Button } from '../shared/button/button';
 import { SearchBox } from '../search-box/search-box';
-import { ToastService } from '../services/toast-service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   imports: [MatIcon, Button, SearchBox],
