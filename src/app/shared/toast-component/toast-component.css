@@ -1,4 +1,9 @@
 :host {
+  --toast-color-info: #2563eb;
+  --toast-color-warning: #d97706;
+  --toast-color-danger: #dc2626;
+  --toast-color-success: #16a34a;
+
   position: relative;
   display: block;
   word-wrap: break-word;
@@ -7,6 +12,22 @@
   border: 1px solid lightgray;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+:host(.toast--info) {
+  background-color: var(--toast-color-info);
+}
+
+:host(.toast--warning) {
+  background-color: var(--toast-color-warning);
+}
+
+:host(.toast--danger) {
+  background-color: var(--toast-color-danger);
+}
+
+:host(.toast--success) {
+  background-color: var(--toast-color-success);
 }
 
 .toast-text {

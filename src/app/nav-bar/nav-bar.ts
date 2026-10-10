@@ -3,6 +3,7 @@ import { MatIcon } from '@angular/material/icon';
 import { Button } from '../shared/button/button';
 import { SearchBox } from '../search-box/search-box';
 import { ToastService } from '../services/toast.service';
+import { ToastVariant } from '../types/toast-item';
 
 @Component({
   imports: [MatIcon, Button, SearchBox],
@@ -14,6 +15,9 @@ export class NavBar {
   private readonly toastService = inject(ToastService);
 
   protected toggleTheme(): void {
-    this.toastService.show('Theme should change, but it has no implementation right now.');
+    this.toastService.show(
+      'Theme should change, but it has no implementation right now.',
+      ToastVariant.Info,
+    );
   }
 }

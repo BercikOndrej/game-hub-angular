@@ -1,7 +1,7 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, inject, Service, signal } from '@angular/core';
-import { ToastItem } from '../types/toast';
+import { ToastItem, ToastVariant } from '../types/toast-item';
 import { ToastContainer } from '../shared/toast-container/toast-container';
 
 @Service()
@@ -14,12 +14,13 @@ export class ToastService {
   private componentRef?: ComponentRef<ToastContainer>;
   private timers = new Map<string, ReturnType<typeof setTimeout>>();
 
-  public show(message: string, displayDuration: number = 5000): void {
+  public show(message: string, variant: ToastVariant, duration: number = 5000): void {
     const id = crypto.randomUUID();
-    const newToast = {
+    const newToast: ToastItem = {
       id: id,
       message: message,
-      animationDuration: displayDuration,
+      duration: duration,
+      variant: variant,
     };
 
     this.activeItems.update((prev) => [...prev, newToast]);
@@ -28,7 +29,7 @@ export class ToastService {
 
     this.timers?.set(
       id,
-      setTimeout(() => this.dismiss(id), displayDuration),
+      setTimeout(() => this.dismiss(id), duration),
     );
     this.componentRef?.setInput('items', this.activeItems());
   }
