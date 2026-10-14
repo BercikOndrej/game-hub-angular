@@ -24,6 +24,9 @@
 </div>
 
 <div class="game-container">
+  @if (store.games().length < 1) {
+    <span>No games are available</span>
+  }
   @for (game of store.games(); track game.id) {
     <app-card class="game-card" [isClickable]="true">
       <div class="header">
