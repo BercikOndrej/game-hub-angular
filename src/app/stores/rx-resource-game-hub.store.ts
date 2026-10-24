@@ -115,9 +115,8 @@ export default class RxResourceGameHubStore {
   });
 
   private setPlatformIdsFunction = (ids: number[]): void => {
-    const foundedList = this.platformResource
-      .value()
-      ?.map((platform: Platform) => platform.id)
+    const foundedList = this.platforms()
+      .map((platform: Platform) => platform.id)
       .filter((id: number) => ids.includes(id));
 
     this.selectedPlatformIds.set(foundedList ? [...foundedList] : []);
@@ -125,7 +124,10 @@ export default class RxResourceGameHubStore {
   };
 
   // API
-  public platforms = this.platformResource.value;
+  public platforms = computed<Platform[]>(() =>
+    this.platformResource.hasValue() ? this.platformResource.value() : [],
+  );
+
   public arePlatformsLoading = this.platformResource.isLoading;
   public platformsError = this.platformResource.error;
   public selectedPlatformIdsValue = this.selectedPlatformIds;

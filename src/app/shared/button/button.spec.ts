@@ -30,4 +30,22 @@ describe('Button', () => {
 
     await expect.element(locator.getByRole('button', { name: 'Play' })).toBeVisible();
   });
+
+  it('omits popup ARIA attributes by default', async () => {
+    const { locator } = await render(Button);
+
+    const button = locator.getByRole('button');
+    await expect.element(button).not.toHaveAttribute('aria-haspopup');
+    await expect.element(button).not.toHaveAttribute('aria-expanded');
+  });
+
+  it('forwards popup ARIA attributes to the native button', async () => {
+    const { locator } = await render(Button, {
+      inputs: { ariaHasPopup: 'listbox', ariaExpanded: false },
+    });
+
+    const button = locator.getByRole('button');
+    await expect.element(button).toHaveAttribute('aria-haspopup', 'listbox');
+    await expect.element(button).toHaveAttribute('aria-expanded', 'false');
+  });
 });

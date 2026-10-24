@@ -10,14 +10,14 @@
   <p>Platforms are loading...</p>
 }
 @if (store.platformsError()) {
-  <p class="error-text">Error ocures: {{ this.store.platformsError()?.message }}</p>
+  <p class="error-text">Error occures: {{ this.store.platformsError()?.message }}</p>
 }
 
 <!-- Filters -->
 <div class="filter-container">
   <app-multiselect-box
     name="Platforms"
-    [items]="store.platforms()!"
+    [items]="store.platforms()"
     (onSelectionChange)="changeSelectedPlatforms($event)"
   />
   <app-button (click)="filterGames()">Filter</app-button>

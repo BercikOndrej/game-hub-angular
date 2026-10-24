@@ -1,3 +1,9 @@
-<button [disabled]="disabled()" [class.button--disabled]="disabled()" class="button-container">
+<button
+  [disabled]="disabled()"
+  [class.button--disabled]="disabled()"
+  [attr.aria-haspopup]="ariaHasPopup()"
+  [attr.aria-expanded]="ariaExpanded()"
+  class="button-container"
+>
   <ng-content></ng-content>
 </button>

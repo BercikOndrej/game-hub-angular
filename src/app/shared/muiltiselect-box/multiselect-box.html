@@ -2,6 +2,7 @@
   <ul
     cdkListbox
     cdkListboxMultiple
+    [attr.aria-label]="name()"
     [cdkListboxValue]="selected()"
     (cdkListboxValueChange)="onItemsChange($event)"
     class="overlay-container"
@@ -21,7 +22,7 @@
   </ul>
 </ng-template>
 
-<app-button (click)="onOpen()">
-  <label for="platforms">{{ nameLabel() }}</label>
+<app-button ariaHasPopup="listbox" [ariaExpanded]="isOpen()" (click)="onOpen()">
+  <span>{{ nameLabel() }}</span>
   <ng-icon [name]="isOpen() ? 'faSolidChevronUp' : 'faSolidChevronDown'" class="select-arrow" />
 </app-button>
