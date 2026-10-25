@@ -106,7 +106,7 @@ describe('ToastService', () => {
   });
 });
 
-async function showToasts() {
+async function showToasts(): Promise<void> {
   await page.getByRole('button', { name: 'Show toast' }).click();
 }
 

@@ -23,7 +23,7 @@ export class RatingStars {
     }
 
     let rating = this.rating();
-    let starStates: StarState[] = [];
+    const starStates: StarState[] = [];
     for (let i = 0; i < this.startsCount; i++) {
       if (rating >= 1) {
         rating--;

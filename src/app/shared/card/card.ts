@@ -22,7 +22,7 @@ export class Card {
   protected footerContent = contentChild<ElementRef<HTMLElement>>('.footer');
   protected hasFooter = computed<boolean>(() => this.footerContent != undefined);
 
-  protected handleClick() {
+  protected handleClick(): void {
     if (this.isClickable()) {
       this.cardClick.emit();
     }

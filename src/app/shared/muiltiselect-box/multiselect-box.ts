@@ -36,7 +36,7 @@ export class MultiselectBox<T extends string | number> {
 
   public name = input.required<string>();
   public items = input.required<ListItem<T>[]>();
-  public onSelectionChange = output<T[]>();
+  public selectionChanged = output<T[]>();
 
   protected isOpen = signal<boolean>(false);
   protected selected = signal<T[]>([]);
@@ -49,7 +49,7 @@ export class MultiselectBox<T extends string | number> {
 
   protected onItemsChange(event: ListboxValueChangeEvent<T>): void {
     this.selected.set([...event.value]);
-    this.onSelectionChange.emit(this.selected());
+    this.selectionChanged.emit(this.selected());
   }
 
   protected onOpen(): void {
@@ -67,11 +67,11 @@ export class MultiselectBox<T extends string | number> {
     this.overlayRef.attach(this.portal());
   }
 
-  protected toggleOpen() {
+  protected toggleOpen(): void {
     this.isOpen.update((open) => !open);
   }
 
-  private closeOverlay() {
+  private closeOverlay(): void {
     this.overlayRef?.dispose();
     this.overlayRef = null;
     this.toggleOpen();

@@ -120,7 +120,7 @@ describe('Game list', async () => {
   });
 });
 
-async function setup() {
+async function setup(): Promise<void> {
   await render(GameList, { providers: [provideHttpClient()] });
 }
 

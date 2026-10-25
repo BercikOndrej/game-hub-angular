@@ -1,7 +1,7 @@
 <div class="items-container" data-testid="toast-container">
   @for (item of items(); track item.id) {
     <app-toast-component
-      (onClose)="deleteToast(item.id)"
+      (dismiss)="deleteToast(item.id)"
       [message]="item.message"
       [variant]="item.variant"
       animate.enter="enter-animation"

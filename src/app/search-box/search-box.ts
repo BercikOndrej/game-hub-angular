@@ -23,7 +23,7 @@ export class SearchBox {
     });
   }
 
-  protected clearAndFocusInput() {
+  protected clearAndFocusInput(): void {
     if (this.searchInput().nativeElement.value.length > 0) {
       this.searchInput().nativeElement.value = '';
     }

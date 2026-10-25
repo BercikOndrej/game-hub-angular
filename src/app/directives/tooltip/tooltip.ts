@@ -17,7 +17,7 @@ import { TooltipComponent } from './tooltip-component';
 })
 export class Tooltip implements OnDestroy {
   public text = input.required<string | null>({ alias: 'appTooltip' });
-  public disabled = input<boolean>(false, { alias: 'appTooltipDisable' });
+  public appTooltipDisable = input<boolean>(false);
 
   private overlay = inject(Overlay);
   private positionBuilder = inject(OverlayPositionBuilder);
@@ -43,9 +43,9 @@ export class Tooltip implements OnDestroy {
     },
   ];
 
-  public onEnter() {
+  public onEnter(): void {
     const inputText = this.text();
-    const isDisabled = this.disabled();
+    const isDisabled = this.appTooltipDisable();
     if (inputText == null || inputText.length === 0 || isDisabled) {
       return;
     }
@@ -65,7 +65,7 @@ export class Tooltip implements OnDestroy {
     componentRef.setInput('text', this.text());
   }
 
-  public onLeave() {
+  public onLeave(): void {
     this.overlayRef?.dispose();
     this.overlayRef = null;
   }

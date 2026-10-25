@@ -21,7 +21,7 @@ export class ToastComponent {
 
   public message = input.required<string>();
   public variant = input.required<ToastVariant>();
-  public onClose = output<void>();
+  public dismiss = output<void>();
 
   protected readonly role = computed<'alert' | 'status'>(() =>
     this.variant() === ToastVariant.Danger ? 'alert' : 'status',

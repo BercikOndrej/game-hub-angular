@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject, Host } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Button } from '../button/button';
 
 export interface ConfirmDialogData {

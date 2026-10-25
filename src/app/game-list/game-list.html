@@ -18,7 +18,7 @@
   <app-multiselect-box
     name="Platforms"
     [items]="store.platforms()"
-    (onSelectionChange)="changeSelectedPlatforms($event)"
+    (selectionChanged)="changeSelectedPlatforms($event)"
   />
   <app-button (click)="filterGames()">Filter</app-button>
 </div>

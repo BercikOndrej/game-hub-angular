@@ -14,7 +14,7 @@ export class ToastService {
   private componentRef?: ComponentRef<ToastContainer>;
   private timers = new Map<string, ReturnType<typeof setTimeout>>();
 
-  public show(message: string, variant: ToastVariant, duration: number = 5000): void {
+  public show(message: string, variant: ToastVariant, duration = 5000): void {
     const id = crypto.randomUUID();
     const newToast: ToastItem = {
       id: id,
@@ -57,7 +57,7 @@ export class ToastService {
     }
   }
 
-  private attachContainer() {
+  private attachContainer(): void {
     if (this.overlayRef) {
       return;
     }

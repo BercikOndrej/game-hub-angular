@@ -17,7 +17,7 @@ export default class RxResourceGameHubStore {
   private readonly search = signal<string | null>('');
 
   private pageSize = 20;
-  private setPageSizeFunction = (page: number) => {
+  private setPageSizeFunction = (page: number): void => {
     if (page < 1) {
       return;
     }

@@ -13,7 +13,7 @@ export class ToastContainer {
   private toastService = inject(ToastService);
   public items = input.required<ToastItem[]>();
 
-  protected deleteToast(id: string) {
+  protected deleteToast(id: string): void {
     this.toastService.dismiss(id);
   }
 }
