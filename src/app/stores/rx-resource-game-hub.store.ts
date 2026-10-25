@@ -6,25 +6,25 @@ import { Game, Platform } from '../types/games';
 
 @Injectable({ providedIn: 'root' })
 export default class RxResourceGameHubStore {
-  private apiService = inject(ApiService);
+  private readonly apiService = inject(ApiService);
 
   protected readonly allGames = linkedSignal<Game[] | undefined, Game[]>({
     source: () => this.gamesPageResource.value()?.results,
-    computation: (games, prev) => [...(prev?.value ?? []), ...(games || [])],
+    computation: (games, prev) => [...(prev?.value ?? []), ...(games ?? [])],
   });
 
   // #region Page and search
   private readonly search = signal<string | null>('');
 
   private pageSize = 20;
-  private setPageSizeFunction = (page: number): void => {
+  private readonly setPageSizeFunction = (page: number): void => {
     if (page < 1) {
       return;
     }
     this.pageSize = page;
   };
 
-  private setSearchFunction = (input: string): void => {
+  private readonly setSearchFunction = (input: string): void => {
     this.search.set(input === '' ? null : input);
   };
 
@@ -37,7 +37,7 @@ export default class RxResourceGameHubStore {
   // #region Games
   private readonly page = signal<number>(1);
 
-  private gamesPageResource = rxResource({
+  private readonly gamesPageResource = rxResource({
     params: () => ({
       platformIds: this.selectedPlatformIds(),
       genreId: this.selectedGenreId(),
@@ -48,7 +48,10 @@ export default class RxResourceGameHubStore {
     stream: ({ params }) => this.apiService.loadGames(params satisfies GameQuery),
   });
 
-  private _games = linkedSignal<{ page: number; response: ApiResponse<Game> | undefined }, Game[]>({
+  private readonly _games = linkedSignal<
+    { page: number; response: ApiResponse<Game> | undefined },
+    Game[]
+  >({
     source: () => ({
       page: this.page(),
       response: this.gamesPageResource.hasValue() ? this.gamesPageResource.value() : undefined,
@@ -59,17 +62,17 @@ export default class RxResourceGameHubStore {
     },
   });
 
-  private _hasMore = computed(() =>
+  private readonly _hasMore = computed(() =>
     this.gamesPageResource.hasValue()
       ? this._games().length < this.gamesPageResource.value().count
       : false,
   );
 
-  private setInicialGameState = (): void => {
+  private readonly setInicialGameState = (): void => {
     this.page.set(1);
   };
 
-  private _loadMore = (): void => {
+  private readonly _loadMore = (): void => {
     if (!this.hasMore() || this.gamesPageResource.isLoading() || this.gamesPageResource.error()) {
       return;
     }
@@ -87,13 +90,13 @@ export default class RxResourceGameHubStore {
 
   // #region Genres
 
-  private selectedGenreId = signal<number | null>(null);
+  private readonly selectedGenreId = signal<number | null>(null);
 
-  private genresResource = rxResource({
+  private readonly genresResource = rxResource({
     stream: () => this.apiService.loadGenres(),
   });
 
-  private setGenreIdFunction = (genreId: number): void => {
+  private readonly setGenreIdFunction = (genreId: number): void => {
     this.selectedGenreId.set(genreId);
     this.setInicialGameState();
   };
@@ -108,13 +111,13 @@ export default class RxResourceGameHubStore {
 
   // #region Platforms
 
-  private selectedPlatformIds = signal<number[]>([]);
+  private readonly selectedPlatformIds = signal<number[]>([]);
 
-  private platformResource = rxResource({
+  private readonly platformResource = rxResource({
     stream: () => this.apiService.loadPlatforms(),
   });
 
-  private setPlatformIdsFunction = (ids: number[]): void => {
+  private readonly setPlatformIdsFunction = (ids: number[]): void => {
     const foundedList = this.platforms()
       .map((platform: Platform) => platform.id)
       .filter((id: number) => ids.includes(id));
@@ -124,7 +127,7 @@ export default class RxResourceGameHubStore {
   };
 
   // API
-  public platforms = computed<Platform[]>(() =>
+  public readonly platforms = computed<Platform[]>(() =>
     this.platformResource.hasValue() ? this.platformResource.value() : [],
   );
 

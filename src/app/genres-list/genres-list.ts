@@ -19,7 +19,7 @@ import RxResourceGameHubStore from '../stores/rx-resource-game-hub.store';
   imports: [Card],
 })
 export class GenresList {
-  private confirmDialog = inject(Dialog);
+  private readonly confirmDialog = inject(Dialog);
   // Signal store
   // private store = inject(GameHubSignalStore);
   // protected genres = linkedSignal(() => this.store.getGenres());
@@ -30,11 +30,13 @@ export class GenresList {
 
   // Rx resource store
   protected store = inject(RxResourceGameHubStore);
-  protected genres = linkedSignal(() => this.store.genres() || []);
+  protected readonly genres = linkedSignal(() => this.store.genres() ?? []);
 
-  protected cards = viewChildren(Card, { read: ElementRef });
+  protected readonly cards = viewChildren<Card, ElementRef<HTMLElement>>(Card, {
+    read: ElementRef,
+  });
 
-  protected selectedGenreId = signal<number | undefined>(undefined);
+  protected readonly selectedGenreId = signal<number | undefined>(undefined);
 
   constructor() {
     effect(() => {

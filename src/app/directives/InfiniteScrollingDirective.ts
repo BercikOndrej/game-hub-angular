@@ -4,12 +4,12 @@ import { afterNextRender, DestroyRef, Directive, ElementRef, inject, output } fr
   selector: '[appInfiniteScrolling]',
 })
 export class InfiniteScrollingDirective {
-  private elRef = inject(ElementRef);
-  private destroyRef = inject(DestroyRef);
+  private readonly elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
 
   public scrollToEnd = output<void>();
 
-  private observer = new IntersectionObserver(
+  private readonly observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         this.scrollToEnd.emit();

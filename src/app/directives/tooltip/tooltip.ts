@@ -16,12 +16,12 @@ import { TooltipComponent } from './tooltip-component';
   },
 })
 export class Tooltip implements OnDestroy {
-  public text = input.required<string | null>({ alias: 'appTooltip' });
-  public appTooltipDisable = input<boolean>(false);
+  public readonly text = input.required<string | null>({ alias: 'appTooltip' });
+  public readonly appTooltipDisable = input<boolean>(false);
 
-  private overlay = inject(Overlay);
-  private positionBuilder = inject(OverlayPositionBuilder);
-  private elRef = inject(ElementRef);
+  private readonly overlay = inject(Overlay);
+  private readonly positionBuilder = inject(OverlayPositionBuilder);
+  private readonly elRef = inject(ElementRef);
   private overlayRef: OverlayRef | null = null;
 
   private readonly positions: ConnectedPosition[] = [

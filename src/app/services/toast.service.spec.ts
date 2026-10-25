@@ -16,14 +16,14 @@ describe('ToastService', () => {
 
   it('should show initial toast', async () => {
     await setup();
-    showToasts();
+    await showToasts();
 
     await expect.element(page.getByText(TEST_MESSAGE)).toBeVisible();
   });
 
   it('toast component should close after short duration of time', async () => {
     await setup();
-    showToasts();
+    await showToasts();
 
     await new Promise((resolve) => setTimeout(resolve, SHORT_DURATION / 2));
     await expect.element(page.getByText(TEST_MESSAGE)).toBeVisible();
@@ -42,7 +42,7 @@ describe('ToastService', () => {
         },
       ],
     });
-    showToasts();
+    await showToasts();
 
     await expect.element(page.getByRole('alert')).toHaveClass(/toast--danger/);
   });
@@ -66,7 +66,7 @@ describe('ToastService', () => {
 
   it('toast component should disapear after user dismiss it manually by close button', async () => {
     await setup();
-    showToasts();
+    await showToasts();
 
     await expect.element(page.getByText(TEST_MESSAGE)).toBeVisible();
 
@@ -76,7 +76,7 @@ describe('ToastService', () => {
 
   it('toast container should disapear after user last toast is dismissed', async () => {
     await setup({ toastItems: multipleTestToasts });
-    showToasts();
+    await showToasts();
 
     const toast1 = page.getByRole('status').filter({ hasText: TEST_MESSAGE });
     const toast2 = page.getByRole('status').filter({ hasText: 'msg-2' });

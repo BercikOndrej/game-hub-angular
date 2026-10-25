@@ -10,8 +10,8 @@ import { ToastComponent } from '../toast-component/toast-component';
   styleUrl: './toast-container.css',
 })
 export class ToastContainer {
-  private toastService = inject(ToastService);
-  public items = input.required<ToastItem[]>();
+  private readonly toastService = inject(ToastService);
+  public readonly items = input.required<ToastItem[]>();
 
   protected deleteToast(id: string): void {
     this.toastService.dismiss(id);

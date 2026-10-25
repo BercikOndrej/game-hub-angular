@@ -28,19 +28,19 @@ export interface ListItem<TId extends string | number> {
   providers: [provideIcons({ faSolidChevronDown, faSolidChevronUp, faSolidCheck })],
 })
 export class MultiselectBox<T extends string | number> {
-  private elementRef = inject(ElementRef);
-  private overlay = inject(Overlay);
-  private positionStrategyBuilder = inject(OverlayPositionBuilder);
-  private portal = viewChild.required(CdkPortal);
+  private readonly elementRef = inject(ElementRef);
+  private readonly overlay = inject(Overlay);
+  private readonly positionStrategyBuilder = inject(OverlayPositionBuilder);
+  private readonly portal = viewChild.required(CdkPortal);
   private overlayRef: OverlayRef | null = null;
 
-  public name = input.required<string>();
-  public items = input.required<ListItem<T>[]>();
+  public readonly name = input.required<string>();
+  public readonly items = input.required<ListItem<T>[]>();
   public selectionChanged = output<T[]>();
 
-  protected isOpen = signal<boolean>(false);
-  protected selected = signal<T[]>([]);
-  protected nameLabel = computed<string>(() => {
+  protected readonly isOpen = signal<boolean>(false);
+  protected readonly selected = signal<T[]>([]);
+  protected readonly nameLabel = computed<string>(() => {
     const len = this.selected().length;
     return len > 0
       ? `${len} ${this.name().toLowerCase()} selected`
@@ -77,7 +77,7 @@ export class MultiselectBox<T extends string | number> {
     this.toggleOpen();
   }
 
-  private positionStrategy = this.positionStrategyBuilder
+  private readonly positionStrategy = this.positionStrategyBuilder
     .flexibleConnectedTo(this.elementRef)
     .withPositions([
       {

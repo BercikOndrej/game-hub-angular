@@ -6,5 +6,5 @@ import { Component, input } from '@angular/core';
   template: `<span>{{ text() }}</span> `,
 })
 export class TooltipComponent {
-  public text = input<string>('');
+  public readonly text = input<string>('');
 }

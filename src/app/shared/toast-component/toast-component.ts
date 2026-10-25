@@ -19,8 +19,8 @@ import { ToastVariant } from '../../types/toast-item';
 export class ToastComponent {
   protected readonly ToastVariant = ToastVariant;
 
-  public message = input.required<string>();
-  public variant = input.required<ToastVariant>();
+  public readonly message = input.required<string>();
+  public readonly variant = input.required<ToastVariant>();
   public dismiss = output<void>();
 
   protected readonly role = computed<'alert' | 'status'>(() =>

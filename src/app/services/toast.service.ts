@@ -8,11 +8,11 @@ import { ToastContainer } from '../shared/toast-container/toast-container';
 export class ToastService {
   private readonly overlay = inject(Overlay);
 
-  private activeItems = signal<ToastItem[]>([]);
+  private readonly activeItems = signal<ToastItem[]>([]);
 
   private overlayRef?: OverlayRef;
   private componentRef?: ComponentRef<ToastContainer>;
-  private timers = new Map<string, ReturnType<typeof setTimeout>>();
+  private readonly timers = new Map<string, ReturnType<typeof setTimeout>>();
 
   public show(message: string, variant: ToastVariant, duration = 5000): void {
     const id = crypto.randomUUID();

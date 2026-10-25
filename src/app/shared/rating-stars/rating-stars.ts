@@ -11,13 +11,15 @@ type StarState = 'star' | 'star_half' | 'star_border';
   host: { class: 'flex p-2 items-center justify-center' },
 })
 export class RatingStars {
-  public rating = input.required<number, number>({
+  public readonly rating = input.required<number, number>({
     transform: (n: number) => Math.floor(n * 2) / 2,
   });
 
   private readonly startsCount = 5;
 
-  protected starRating: Signal<StarState[] | undefined> = computed<StarState[] | undefined>(() => {
+  protected readonly starRating: Signal<StarState[] | undefined> = computed<
+    StarState[] | undefined
+  >(() => {
     if (this.rating() > 5 || this.rating() < 0) {
       return undefined;
     }

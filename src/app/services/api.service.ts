@@ -19,7 +19,7 @@ export class ApiService {
   private readonly GenresUrl = 'https://api.rawg.io/api/genres';
   private readonly GamesUrl = 'https://api.rawg.io/api/games';
   private readonly PlatformsUrl = 'https://api.rawg.io/api/platforms/lists/parents';
-  private client = inject(HttpClient);
+  private readonly client = inject(HttpClient);
 
   // private cache: Map<string, Observable<Game[]>> = new Map();
 

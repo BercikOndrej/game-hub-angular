@@ -12,8 +12,8 @@ import RxResourceGameHubStore from '../stores/rx-resource-game-hub.store';
 })
 export class SearchBox {
   private readonly store = inject(RxResourceGameHubStore);
-  protected value = signal('');
-  protected searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+  protected readonly value = signal('');
+  protected readonly searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly debouncedSearch = debounced(this.value, 2000);
 
   constructor() {

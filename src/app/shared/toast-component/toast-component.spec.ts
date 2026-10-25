@@ -48,13 +48,13 @@ describe('ToastComponent', () => {
     await expect.element(page.getByRole('button', { name: 'Close' })).toBeVisible();
   });
 
-  it('emits onClose when the close button is clicked', async () => {
+  it('emits dismiss when the close button is clicked', async () => {
     const { componentClassInstance } = await render(ToastComponent, {
       inputs: { message: TEST_MESSAGE, variant: ToastVariant.Info },
     });
 
     const emitSpy = vi.fn();
-    componentClassInstance.onClose.subscribe(emitSpy);
+    componentClassInstance.dismiss.subscribe(emitSpy);
 
     await page.getByRole('button', { name: 'Close' }).click();
 

@@ -12,15 +12,15 @@ import { Component, computed, contentChild, ElementRef, input, output } from '@a
   },
 })
 export class Card {
-  public isClickable = input(false);
-  public isSelected = input(false);
+  public readonly isClickable = input(false);
+  public readonly isSelected = input(false);
   public cardClick = output();
 
-  protected headerContent = contentChild<ElementRef<HTMLElement>>('.header');
-  protected hasHeader = computed<boolean>(() => this.headerContent != undefined);
+  protected readonly headerContent = contentChild<ElementRef<HTMLElement>>('.header');
+  protected readonly hasHeader = computed<boolean>(() => this.headerContent != undefined);
 
-  protected footerContent = contentChild<ElementRef<HTMLElement>>('.footer');
-  protected hasFooter = computed<boolean>(() => this.footerContent != undefined);
+  protected readonly footerContent = contentChild<ElementRef<HTMLElement>>('.footer');
+  protected readonly hasFooter = computed<boolean>(() => this.footerContent != undefined);
 
   protected handleClick(): void {
     if (this.isClickable()) {
