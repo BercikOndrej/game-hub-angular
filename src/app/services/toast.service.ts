@@ -1,8 +1,8 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, inject, Service, signal } from '@angular/core';
-import { ToastItem, ToastVariant } from '../types/toast-item';
 import { ToastContainer } from '../shared/toast-container/toast-container';
+import { ToastItem, ToastVariant } from '../types/toast-item';
 
 @Service()
 export class ToastService {

@@ -1,27 +1,26 @@
 import { render } from 'vitest-browser-angular';
 import { page } from 'vitest/browser';
-import { ToastVariant } from '../../types/toast-item';
 import { ToastComponent } from './toast-component';
 
 const TEST_MESSAGE = 'Test message';
 
 describe('ToastComponent', () => {
   it.each([
-    { variant: ToastVariant.Info, className: 'toast--info', role: 'status', ariaLive: 'polite' },
+    { variant: 'INFO', className: 'toast--info', role: 'status', ariaLive: 'polite' },
     {
-      variant: ToastVariant.Warning,
+      variant: 'WARNING',
       className: 'toast--warning',
       role: 'status',
       ariaLive: 'polite',
     },
     {
-      variant: ToastVariant.Danger,
+      variant: 'DANGER',
       className: 'toast--danger',
       role: 'alert',
       ariaLive: 'assertive',
     },
     {
-      variant: ToastVariant.Success,
+      variant: 'SUCCESS',
       className: 'toast--success',
       role: 'status',
       ariaLive: 'polite',
@@ -42,7 +41,7 @@ describe('ToastComponent', () => {
 
   it('close button has an accessible name', async () => {
     await render(ToastComponent, {
-      inputs: { message: TEST_MESSAGE, variant: ToastVariant.Info },
+      inputs: { message: TEST_MESSAGE, variant: 'INFO' },
     });
 
     await expect.element(page.getByRole('button', { name: 'Close' })).toBeVisible();
@@ -50,7 +49,7 @@ describe('ToastComponent', () => {
 
   it('emits dismiss when the close button is clicked', async () => {
     const { componentClassInstance } = await render(ToastComponent, {
-      inputs: { message: TEST_MESSAGE, variant: ToastVariant.Info },
+      inputs: { message: TEST_MESSAGE, variant: 'INFO' },
     });
 
     const emitSpy = vi.fn();

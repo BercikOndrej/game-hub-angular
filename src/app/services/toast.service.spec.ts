@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { render } from 'vitest-browser-angular';
 import { page } from 'vitest/browser';
 import { ToastService } from './toast.service';
-import { ToastItem, ToastVariant } from '../types/toast-item';
+import { ToastItem } from '../types/toast-item';
 
 const TEST_MESSAGE = 'Test message';
 const SHORT_DURATION = 200;
@@ -38,7 +38,7 @@ describe('ToastService', () => {
       toastItems: [
         {
           ...testToast,
-          variant: ToastVariant.Danger,
+          variant: 'DANGER',
         },
       ],
     });
@@ -52,7 +52,7 @@ describe('ToastService', () => {
       toastItems: [
         {
           ...testToast,
-          variant: ToastVariant.Danger,
+          variant: 'DANGER',
         },
       ],
     });
@@ -121,7 +121,7 @@ interface SetupResult {
 const testToast: ToastItem = {
   id: 'test-toast-1',
   message: TEST_MESSAGE,
-  variant: ToastVariant.Info,
+  variant: 'INFO',
   duration: SHORT_DURATION,
 };
 

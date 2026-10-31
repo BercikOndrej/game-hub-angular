@@ -5,9 +5,11 @@ export interface ToastItem {
   variant: ToastVariant;
 }
 
-export enum ToastVariant {
-  Info = 'info',
-  Warning = 'warning',
-  Danger = 'danger',
-  Success = 'success',
-}
+export const TOAST_VARIANT = {
+  INFO: 'Info',
+  WARNING: 'Warning',
+  DANGER: 'Danger',
+  SUCCESS: 'Success',
+} as const;
+
+export type ToastVariant = keyof typeof TOAST_VARIANT;
